@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+class Svg{
+	id = 0;
+	ns='http://www.w3.org/2000/svg';
+	xlink='http://www.w3.org/1999/xlink'; 
+
+	defaults={
+        stroke: 'none',
+        fill: 'none'
+    }
+
+    createNode(name){
+        const node = document.createElementNS(this.ns, name);
+        node.id = 'IQI_' + name + '_' + this.id++;
+        console.log(this.id);
+        return node;
+    }
+}
+
+let svg = new Svg(); 
+let n1 = svg.createNode("g");
+
+
+let n2 = svg.createNode("g");
+console.log(n1);
+console.log(n2);
+</script>
+</body>
+</html>
