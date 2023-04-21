@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onload = function(){
+            console.log(Math.round(186 - 80)/10);
+        }
+        diff(1.21,2.221);
+        function diff(...nums){
+            //获取小数位数
+            const reg = /\d+\.(\d+)/;
+            let lengths = [];
+            for(let num of nums){
+                const result = num.toString().match(reg);
+                if(result){
+                    lengths.push(result[1].length);
+                }
+            }
+            const maxlength=Math.max(...lengths);
+            const coefficient = 10**maxlength;
+            let sum = 0;
+
+            for(let key in nums){
+                if(key>0){
+                    sum += nums[key]*coefficient;
+                }
+            }
+            console.log(sum);
+            return (nums[0]*coefficient- sum)/coefficient;
+        }
+    </script>
+</body>
+</html>

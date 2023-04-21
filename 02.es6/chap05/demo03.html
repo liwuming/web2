@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{margin:0;padding: 0;}
+        main{
+            margin:0 auto;
+            width:1000px;
+            min-height: 600px;
+            border:1px solid red;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" id="btn1">设置背景</button>
+    <button type="button" id="btn2">取消背景</button>
+    <main id="x"></main>
+    <script>
+        const box=document.querySelector('#x');
+        document.querySelector('#btn1').onclick = function(){
+            x.style.backgroundImage = "url(https://cdn.ibiancheng.net/cn2sg/connect.gif)";
+        }   
+        document.querySelector('#btn2').onclick = function(){
+            x.style.background = "";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let d1='1610362154';
+        let d2=Number.parseInt(new Date().getTime()/1000);
+        const diff = (d2-d1);   
+        let days = Number.parseInt(diff / 86400);
+        let result = "";
+        if(days>0){
+            if(days>30){
+                let months = Number.parseInt(days/30);
+                if(months>12){
+                    const years = Number.parseInt(days/365);
+                    days = days%365;
+                    if(days>30){
+                        months = Number.parseInt(days/30);
+                        result = `${years}年${months}月`;
+                    }else{
+                        result = `${years}年${days}天`;
+                    }
+                }else{
+                    result = `${months}月${days%30}天`;
+                } 
+            }else{
+                result = `${days}天`;
+            }
+        }else{
+            result = Number.parseInt(diff / 3600)+"小时";
+        }
+
+        console.log(result);
+    </script>
+</body>
+</html>
