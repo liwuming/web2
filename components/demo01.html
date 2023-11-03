@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="myform">
+        <input type="file" name="uploadfile" id="myfile"/>
+    </form>
+    <button type="button" id="uploadBtn">上传文件</button>
+    <hr/>
+    <img src="" id="preview"/>
+    <script>
+        window.onload = function(){
+            const myfile=document.querySelector("#myfile");
+            document.querySelector('#uploadBtn').onclick = function(){
+                myfile.click();
+            }
+
+            myfile.onchange = function(){
+                const xhr = new XMLHttpRequest();
+                let data = new FormData(document.querySelector("#myform"));
+                xhr.open('POST','./demo01.php');
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState === 4 && xhr.status === 200) {
+                        let response = JSON.parse(xhr.responseText)
+                        if(response.code === 200) {
+                            // 上传成功
+                            // 将服务器返回的图片地址，设置为 <img> 标签的 src 属性
+                            document.querySelector('#preview').setAttribute('src',response.src);
+                        }
+                    }
+                }
+                xhr.send(data);
+            }
+        }
+    </script>
+</body>
+</html>
