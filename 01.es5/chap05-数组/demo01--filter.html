@@ -6,10 +6,22 @@
 	<title></title>
 </head>
 <body>
-<span id="one"></span>
-<span id="two"></span>
 <script type="text/javascript">
-	document.querySelector("#one").innerHTML = document.querySelector("#two").innerHTML = "hello world";
+const obj = [
+	{id:1,name:'aa'},
+	{id:2,name:'bb'},
+	{id:3,name:'cc'},
+	{id:4,name:'ddd'},
+];
+
+let result = obj.filter((item)=>{
+	if(item.id!=2){
+		return item;
+	}
+});
+console.log(result);
 </script>
+
+
 </body>
 </html>

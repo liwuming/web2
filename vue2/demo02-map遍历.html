@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<div id="app">
+	<button @click="add">addbtn</button>
+	<ul>
+		<li v-for="[item,index] in datagrid" :key="index">{{item}}</li>
+	</ul>
+</div>
+<script type="text/javascript" src="../libs/vue.min.js"></script>
+<script type="text/javascript">
+	const vm = new Vue({
+		el:"#app",
+		data:{
+			index:1,
+			datagrid:new Map()
+		},
+		methods:{
+			add(){
+				const obj = {id:this.index,name:'aa'}
+				this.datagrid.set(1,'aa');
+				this.datagrid.set(2,'bb');
+
+				//console.log(this.datagrid);
+				//this.index++;
+			}
+		},
+		mounted(){
+			console.log(this.datagrid instanceof Map);
+		}
+	});
+</script>
+</body>
+</html>

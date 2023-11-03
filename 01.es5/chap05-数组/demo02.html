@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+
+	<style type="text/css">
+*{margin: 0;padding: 0}
+body{background: #f5f5f5;}
+
+	header{
+		width: 100%;
+		height: 50px;
+		background: #fff;
+		position:fixed;left: 0;top: -50px;
+		/*
+多长时间才能完成动画
+		*/
+		animation-duration:.38s;
+		/*
+		动画延迟
+		animation-delay: 2s;
+		*/
+	}
+	header.enter{
+		top:0px;
+		animation: header-tool-enter 0.618s cubic-bezier(.6,-0.47,.63,1) forwards;
+		
+	}
+	header.leave{
+		top: -50px;
+		animation: header-tool-leave 0.618s cubic-bezier(.6,-0.47,.63,1) forwards;
+	}
+	main{
+		margin:100px auto 0 auto;
+		width: 1000px;
+	}
+
+	@keyframes header-tool-enter{
+	    0%{
+	    	transform: translateY(-50px);	
+	    }
+	    100%{
+	    	transform: translateY(0);	
+	    }
+	}
+	@keyframes header-tool-leave{
+	    0%{
+	    	transform: translateY(0);	
+	    }
+	    100%{
+	    	transform: translateY(-50px);	
+	    }
+	}
+	</style>
+</head>
+<body>
+
+<header id="header">
+	
+</header>
+<main>
+	<button type="button" id="btn1">enter</button>
+	<button type="button" id="btn2">leave</button>
+</main>
+<script type="text/javascript">
+	const header = document.querySelector("#header");
+	document.querySelector("#btn1").onclick = function(){
+		if(header.classList.contains("leave")){
+			header.classList.remove("leave");
+		}
+		header.classList.add("enter");
+	}
+
+	document.querySelector("#btn2").onclick = function(){
+		if(header.classList.contains("enter")){
+			header.classList.remove("enter");
+		}
+		header.classList.add("leave");
+	}
+</script>
+</body>
+</html>

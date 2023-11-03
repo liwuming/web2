@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<div id="app">
+	{{msg}}
+	<label for="stype_1"><input type="radio" name="stype" value="1" id="stype_1" @change="handchange(e)"><span class="ox">普通货</span></label>
+	<label for="stype_2"><input type="radio" name="stype" value="2" id="stype_2" @change="handchange(e)">敏感货</label>
+	<label for="stype_3"><input type="radio" name="stype" value="3" id="stype_3" @change="handchange(e)">不限</label>
+
+	<button @click="add">addbtn</button>
+	<ul>
+		<li v-for="(item,index) in datagrid" :key="item.id">
+			{{index}}--{{item.name}}
+			<button @click="del(item.id)">delbtn</button>
+		</li>
+	</ul>
+</div>
+<script type="text/javascript" src="../libs/vue.min.js"></script>
+<script type="text/javascript">
+	const olist = {};
+	const vm = new Vue({
+		el:"#app",
+		data:{
+			msg:"111",
+			index:1,
+			datagrid:{}
+		},
+		methods:{
+			add(){
+				const obj = {id:this.index,name:'aa1'};
+				olist[this.index] = obj;
+				//this.datagrid=olist;
+				//console.log(olist,this.datagrid);
+      			this.$set(this.datagrid,this.index,{id:this.index,name:'aa'}) //只修改数组中某个元素的某个属性
+				this.index++;
+			},
+			del(index){
+				this.$delete(,);
+				delete [index];
+				https://blog.csdn.net/qq_40576178/article/details/120144496
+				//this.$set(this.datagrid,index,null) //只修改数组中某个元素的某个属性
+			},
+			handchange(e){
+
+			}
+		},
+		watch:{
+			datagrid:{
+				handler:function(newV,oldV){
+					console.log(newV,oldV);
+            	},
+            	deep:true
+			}
+		},
+		mounted(){
+			//this.datagrid = olist;
+		}
+	});
+</script>
+</body>
+</html>

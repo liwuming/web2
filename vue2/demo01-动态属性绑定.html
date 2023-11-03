@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<div id="app">
+	
+	<ul>
+		<li v-for="(item,index) of datagrid" :key="index" :xx="`x${item.id}`">{{item.name}}</li>
+	</ul>
+</div>
+<script type="text/javascript" src="../libs/vue.min.js"></script>
+<script type="text/javascript">
+	const vm = new Vue({
+		el:"#app",
+		data:{
+			datagrid:[
+				{id:1,name:'aa'},
+				{id:2,name:'bb'},
+				{id:3,name:'cc'}
+			]
+		}
+	});
+</script>
+</body>
+</html>

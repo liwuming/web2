@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	window.deviceid = 'N6HLSVS50X';
+	/*
+
+	*/
+	console.log()
+	const socket = new WebSocket("ws://127.0.0.1:8288");
+	socket.addEventListener("open",res=>{
+		const data = {
+			action:1000,
+			deviceid:window.deviceid
+		};
+		socket.send(JSON.stringify(data));
+	});
+
+
+	socket.addEventListener("message",res=>{
+		console.log("message--收到消息")
+		if(res.data !== void 0 && res.data[0] == '{' && res.data.charAt(res.data.length-1)=='}'){
+			console.log(JSON.parse(res.data))
+		}else if(res.data !== void 0){
+			console.log(res.data[-1])
+		}
+	});
+
+	socket.addEventListener("close",res=>{
+		console.log("close--收到消息")
+		if(res.data !== void 0){
+			console.log(JSON.parse(res.data))
+		}
+	});
+
+	
+	socket.addEventListener("error",res=>{
+		console.log("error--收到消息")
+		if(res.data !== void 0){
+			console.log(JSON.parse(res.data))
+		}
+	});
+
+</script>
+</body>
+</html>
