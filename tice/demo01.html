@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>处理json解析异常问题</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #f5f6f7;
+      }
+
+      #demo {
+      }
+
+      #demo .error-section {
+        padding: 10px 15px;
+        border-top: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="demo"></div>
+    <script>
+      /*
+            Javascript Error
+      Uncaught SyntaxError; Unexpected non whitespace character after JSON at position 356 at main.html:1
+            */ const str =
+        '{"results":[{"oldID":5,"oldMain":"News papers"}]}{"results":[{"oldID":3,"oldMain":"Construction"}]}';
+
+      let num = 16;
+      console.log(`AA550B0${Number.parseInt(num, 10).toString(16)}FCCF`);
+
+      try {
+        const items = [
+          '[{"oldID":5,"oldMain":"News papers"}]',
+          '[{"oldID":5,"oldMain":"News papers"}]',
+          '[{"oldID":5,"oldMain":"News papers"}]',
+          '[{"oldID":5,"oldMain":"News papers"}]',
+          '[{"oldID":5,"oldMain":"News papers"}]',
+          '[{"oldID":5,"oldMain":"News papers"}]'
+        ];
+
+        let str = '';
+        for (const item of items) {
+          str += `<div class='error-section'>${item}</div>`;
+        }
+        document.querySelector('#demo').innerHTML = str;
+      } catch (error) {
+        console.log('hello world', str);
+        console.error(error);
+      }
+
+      function fetchAPI4() {
+        return fetch(
+          'https://api.cloudflare.com/client/v4/zones/123456798hfd347gd57g5789gfdsxgxxxxx/logs/received?start=2021-05-09T00:00:00Z&end=2021-05-09T01:00:00Z&&count=10&fields=ClientRequestBytes,EdgeColoCode'
+        );
+      }
+    </script>
+  </body>
+</html>
