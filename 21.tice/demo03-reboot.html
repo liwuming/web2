@@ -1,0 +1,65 @@
+`
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>处理json解析异常问题</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #f5f6f7;
+      }
+
+      #demo {
+      }
+
+      #demo .error-section {
+        padding: 10px 15px;
+        border-top: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+  
+  
+	
+    <div id="demo"></div>
+    <script>
+    window.domain = 'http://bdapi.omninet.asia/';
+		post('/device/detail',{deviceid:'A0SF9ZQDVJ'}).then(res => {
+			console.log(res);
+			if (res.code == 200) {
+			  
+			}
+		  });
+      function post(url, params = {}){
+		return new Promise((resolve,reject)=>{
+		  const keys = Object.keys(params);
+		  const formdata = new FormData();
+		  if (keys.length > 0) {
+			for (const key of keys) {
+			  formdata.append(key, params[key]);
+			}
+		  }
+		  fetch(window.domain + url, {
+			method: "POST",
+			mode: "cors",
+			cache: "no-cache",
+			credentials: "same-origin",
+			headers: {},
+			redirect: "follow",
+			referrerPolicy: "no-referrer",
+			body: formdata
+		  }).then(res=>{
+			resolve(res.json())
+		  });
+		});
+	  }
+    </script>
+  </body>
+</html>

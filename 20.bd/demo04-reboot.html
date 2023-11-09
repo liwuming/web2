@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.ibiancheng.net/static/translate/core.min.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <button id="reboot" type="button">reboot</button>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="http://cdn.ibiancheng.net/bd/js/vue.min.js"
+    ></script>
+    <script type="text/javascript">
+      window.onload = function (){
+        	const socket = new WebSocket("ws://192.168.124.35:8288");
+			socket.addEventListener("open",res=>{
+				const data = {
+					action:1000,
+					deviceid:window.deviceid
+				};
+				socket.send(JSON.stringify(data));
+			});
+
+			socket.addEventListener("message",res=>{
+				console.log("message--收到消息")
+				if(res.data !== void 0 && res.data[0] == '{' && res.data.charAt(res.data.length-1)=='}'){
+					console.log(JSON.parse(res.data))
+				}else if(res.data !== void 0){
+					console.log(res.data[-1])
+				}
+			});
+
+			socket.addEventListener("close",res=>{
+				console.log("close--收到消息")
+				if(res.data !== void 0){
+					console.log(JSON.parse(res.data))
+				}
+			});
+
+			
+			socket.addEventListener("error",res=>{
+				console.log("error--收到消息")
+				if(res.data !== void 0){
+					console.log(JSON.parse(res.data))
+				}
+			});
+      };
+    </script>
+  </body>
+</html>

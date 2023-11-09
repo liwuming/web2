@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.ibiancheng.net/static/translate/core.min.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <table>
+        <thead>
+          <tr>
+            <td></td>
+            <td>sn</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in rows">
+            <td></td>
+            <td>sn</td>
+            <td>操作</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="http://cdn.ibiancheng.net/bd/js/vue.min.js"
+    ></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        const vm = new Vue({
+          el: '#app',
+          data: {},
+          methods: {
+            axios(path) {
+              return new Promise((resolve, reject) => {
+                const domain = 'http://bdapi.omninet.asia';
+                fetch(`${domain}${path}`).then(res => {
+                  resolve(res.json());
+                });
+              });
+            },
+            async post(path, parma) {
+              const domain = 'http://bdapi.omninet.asia/';
+
+              const response = fetch(window.domain + url, {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {},
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer',
+                body: formdata
+              }).then(res => {
+                resolve(res.json());
+              });
+            }
+          },
+          mounted() {
+            this.axios('/device/getdatalist').then(res => {
+              if (res.code == 200) {
+                this.datagrip = res.data;
+              } else {
+                console.log('error');
+              }
+            });
+          }
+        });
+      };
+
+      async function post121(url, data) {
+        let params = [];
+        const keys = Object.keys(data);
+        if (keys.length > 0) {
+          for (let key of keys) {
+            params.push(`${key}=${data[key]}`);
+          }
+        }
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          body: params.join('&')
+        });
+        return response.json();
+      }
+    </script>
+  </body>
+</html>
